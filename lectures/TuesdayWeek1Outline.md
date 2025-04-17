@@ -26,4 +26,4 @@
     - Functions
     - If (conditional) statements
     - For (and while) loops
-    - Arrays and strings
+    - Arrays and strings - will get to Wednesday
