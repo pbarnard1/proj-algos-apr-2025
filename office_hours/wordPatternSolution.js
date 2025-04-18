@@ -30,7 +30,7 @@ var wordPattern = function(pattern, s) {
     for (let k = 0; k < allWords.length; k++) { // or k < pattern.length
         const curWord = allWords[k];
         /* NOTE: we can't use the keyword "in" for checking to see if a key is in a property in case the key as a 
-        string happens to match a keyword like "constructor".  So we either use the .hasOwnProperty method, OR we can
+        string happens to match a keyword like "constructor".  So we either use the hasOwnProperty method, OR we can
         use JavaScript Maps to create the key-value pairs.  (This is because every object in JavaScript has a property called
         "constructor", which caused problems, as it returns a reference to the constructor function in said object.  See:
         https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor)
