@@ -2,6 +2,10 @@
 
 This is Adrian's solution!  There are two variants - the first with a very subtle issue if a word is 'constructor', 
 and the second that gets around the issue.
+
+Two test cases you can try: 
+pattern = "aaaa" and s = "red blue green yellow" -> should return false
+pattern = "abcd" and s = "red red red red" -> should return false
 */
 
 /**
