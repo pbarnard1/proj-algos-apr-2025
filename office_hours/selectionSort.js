@@ -1,5 +1,7 @@
 const selectionSort = arr => {
     // Array will be sorted in ascending order IN PLACE
+
+    /* THIS IS NOT FINISHED YET!  We will wrap it up in Wednesday's office hour! */
     
     // Find the smallest value in the array, and move it to the beginning, swapping values appropriately
     let minVal = arr[0];
