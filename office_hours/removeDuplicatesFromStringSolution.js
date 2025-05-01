@@ -22,11 +22,18 @@ var removeDuplicates = function(s) {
         }
     }
     // The stack at this point will hold only letters that couldn't be matched up, so now let's
-    // form the new string, one letter at a time
+    // form the new string, one letter at a time; this is the proper way when using a stack, as we 
+    // can only push and pop
     let newStr = "";
-    for (let ltr of letterStack) {
-        newStr += ltr;
+    while (letterStack.length > 0) {
+        let removedLtr = letterStack.pop();
+        newStr = removedLtr + newStr;
     }
+    // Another way to form the string, but it doesn't clear the stack
+    // let newStr = "";
+    // for (let ltr of letterStack) {
+    //     newStr += ltr;
+    // }
     return newStr;
     // return letterStack.join(""); // Alternate approach
 };
