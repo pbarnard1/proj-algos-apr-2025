@@ -55,7 +55,7 @@ const addNestedArrayValues = arr => {
     }
     return sum;
 }
-console.log(addNestedArrayValues(nestedArr)); // 37
+// console.log(addNestedArrayValues(nestedArr)); // 37
 
 /* Another way to check if something is an array (be careful with objects, however!)
 let x = [];
@@ -70,3 +70,41 @@ let y = {};
 console.log(typeof x); // "object"
 console.log(typeof y); // "object"
 */
+
+const fibonacci = n => {
+    if (n <= 1) { // Base case (stopping point for recursion)
+        return n;
+    } else { // Recursion needed
+        return fibonacci(n-2) + fibonacci(n-1);
+    }
+}
+
+// This is VERY SLOW!!
+// for (let k = 0; k <= 45; k++) {
+//     console.time("fibonacci");
+//     console.log(`${k}th term is `+fibonacci(k));
+//     console.timeEnd("fibonacci");
+// }
+
+const fibonacciWithMemo = (n, savedFibonacciTerms = {}) => {
+    // console.log(savedFibonacciTerms);
+    if (n <= 1) { // Base case (stopping point for recursion)
+        savedFibonacciTerms[`${n}`] = n; // Save the 0th/1st term into the memo
+        return n;
+    } // Recursion needed
+    if (!savedFibonacciTerms.hasOwnProperty(n-1)) {
+        savedFibonacciTerms[`${n-1}`] = fibonacciWithMemo(n-1, savedFibonacciTerms); // Notice we're passing the memo here!
+    }
+    if (!savedFibonacciTerms.hasOwnProperty(n-2)) {
+        savedFibonacciTerms[`${n-2}`] = fibonacciWithMemo(n-2, savedFibonacciTerms);
+    }
+    savedFibonacciTerms[`${n}`] =  savedFibonacciTerms[`${n-2}`] + savedFibonacciTerms[`${n-1}`];
+    return savedFibonacciTerms[`${n}`];
+}
+
+// Test - notice how fast this is and we can calculate big terms quickly!
+for (let k = 0; k <= 100; k++) {
+    console.time("fibonacci");
+    console.log(`${k}th term is `+fibonacciWithMemo(k));
+    console.timeEnd("fibonacci");
+}
