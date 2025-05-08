@@ -37,6 +37,49 @@ class BST {
         }
         return this;
     }
+
+    height(currentNode = this.root, calculatedHeight = 0) {
+        if (currentNode === null || (currentNode.left === null && currentNode.right === null)) {
+            return calculatedHeight; // rightHeight - same result
+        }
+        let leftHeight = 0, rightHeight = 0;
+        // Recursively find the height going to the left or right (where possible)
+        if (currentNode.left !== null) {
+            leftHeight = this.height(currentNode.left, calculatedHeight+1);
+        }
+        if (currentNode.right !== null) {
+            rightHeight = this.height(currentNode.right, calculatedHeight+1);
+        }
+        return Math.max(leftHeight,rightHeight);
+    }
+    
+    /* Three different ways to traverse a binary search tree */
+    inOrder(currentNode = this.root) {
+        if (currentNode === null) {
+            return;
+        }
+        this.inOrder(currentNode.left); // Print everything to the left of this node
+        console.log(currentNode.data); // Print this node's value
+        this.inOrder(currentNode.right); // Print everything to the right of this node
+    }
+
+    preOrder(currentNode = this.root) {
+        if (currentNode === null) {
+            return;
+        }
+        console.log(currentNode.data); // Print this node's value
+        this.preOrder(currentNode.left); // Print everything to the left of this node
+        this.preOrder(currentNode.right); // Print everything to the right of this node
+    }
+
+    postOrder(currentNode = this.root) {
+        if (currentNode === null) {
+            return;
+        }
+        this.postOrder(currentNode.left); // Print everything to the left of this node
+        this.postOrder(currentNode.right); // Print everything to the right of this node
+        console.log(currentNode.data); // Print this node's value
+    }
 }
 
 let myTree = new BST();
@@ -45,5 +88,8 @@ myTree.addNode(new BSTNode(10));
 myTree.addNode(new BSTNode(25));
 myTree.addNode(new BSTNode(30));
 myTree.addNode(new BSTNode(22));
-console.log(myTree);
-console.log(myTree.root.right); // Examining the tree in a little more detail
+myTree.postOrder();
+// console.log(myTree);
+// console.log(myTree.root.right); // Examining the tree in a little more detail
+// console.log(myTree.height()); // Finding the height of the entire tree
+// console.log(myTree.height(myTree.root.left)); // Finding the height of the tree from the 10 node
